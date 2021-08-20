@@ -28,7 +28,8 @@ myWSServer.on('connection', (socket) =>{
         const newProduct = {
           producto: data,
         };
-        data.id = productos.length + 1;
+
+        socket.emit('product', newProduct)
         console.log(newProduct);
         productos.push(newProduct);
         //Ahora los productos los paso del server al cliente
@@ -46,7 +47,7 @@ myWSServer.on('connection', (socket) =>{
     
       socket.on('askData', (data) => {
         console.log('ME LLEGO DATA');
-        socket.emit('productos', productos);
-        // console.log(productos);
+        socket.emit('productos1', productos);
+        console.log(productos);
       });
 });
